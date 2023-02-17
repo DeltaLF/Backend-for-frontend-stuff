@@ -28,6 +28,10 @@ class CounterDatasource extends MongoDataSource<CounterDoc> {
     );
     return newCounter;
   }
+  async deleteCounter(id: string) {
+    const deletedCounter = await Counter.findOneAndDelete({ id: id });
+    return deletedCounter;
+  }
 }
 
 export default CounterDatasource;

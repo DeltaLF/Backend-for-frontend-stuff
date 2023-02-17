@@ -56,6 +56,34 @@ const resolvers = {
         };
       }
     },
+    deleteCounter: async (_, { id }, { dataSources }) => {
+      try {
+        const res = await dataSources.couterDatasource.deleteCounter(id);
+        if (res) {
+          return {
+            code: 200,
+            success: true,
+            message: "Counter deleted successfully!",
+            counter: res,
+          };
+        } else {
+          return {
+            code: 400,
+            success: false,
+            message: "Counter deleted failed",
+            counter: null,
+          };
+        }
+      } catch (error) {
+        const { response } = error.extensions;
+        return {
+          code: response.status,
+          success: false,
+          message: response.body,
+          counter: null,
+        };
+      }
+    },
   },
 };
 
