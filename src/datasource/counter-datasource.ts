@@ -1,6 +1,6 @@
 import { MongoDataSource } from "apollo-datasource-mongodb";
-import { CounterDoc, Counter } from "../models/counters";
-
+import { CounterDoc, Counter } from "../models/counters.js";
+import { v4 } from "uuid";
 class CounterDatasource extends MongoDataSource<CounterDoc> {
   constructor(Counter) {
     super(Counter);
@@ -15,6 +15,11 @@ class CounterDatasource extends MongoDataSource<CounterDoc> {
     return resp;
   }
   // mutation
+  async createCounter(data: string | undefined) {
+    const newCounter = Counter.build({ id: v4(), count: 0, data });
+    await newCounter.save();
+    return newCounter;
+  }
 }
 
 export default CounterDatasource;

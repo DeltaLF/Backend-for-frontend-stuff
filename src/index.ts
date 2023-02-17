@@ -8,7 +8,6 @@ import typeDefs from "./schema.js";
 import resolvers from "./resolver.js";
 import { Counter as CounterModel } from "./models/counters.js";
 import CounterDatasource from "./datasource/counter-datasource.js";
-import { v4 } from "uuid";
 // connect mongodb
 
 (async () => {
