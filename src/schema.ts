@@ -18,7 +18,6 @@ const typeDefs = gql`
     createCounter(data: String): CounterResponse!
     "default value: 1"
     increaseCounter(id: ID!, value: Int): CounterResponse!
-    decreaseCounter(id: ID!, value: Int): CounterResponse!
   }
 
   type CounterResponse {

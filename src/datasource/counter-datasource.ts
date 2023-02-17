@@ -20,6 +20,14 @@ class CounterDatasource extends MongoDataSource<CounterDoc> {
     await newCounter.save();
     return newCounter;
   }
+  async increaseCounter(id: string, value: number | undefined) {
+    const newCounter = await Counter.findOneAndUpdate(
+      { id: id },
+      { $inc: { count: value === undefined ? 1 : value } },
+      { new: true },
+    );
+    return newCounter;
+  }
 }
 
 export default CounterDatasource;
