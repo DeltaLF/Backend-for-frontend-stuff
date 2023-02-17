@@ -25,7 +25,8 @@ import CounterDatasource from "./datasource/counter-datasource.js";
     },
   });
 
-  server.listen({ port: 4001 }).then(() => {
-    console.log("server is runinng on port 4001");
+  const port = process.env.PORT || 4000;
+  server.listen({ port }).then(() => {
+    console.log(`server is runinng on port ${port}`);
   });
 })();
